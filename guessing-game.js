@@ -1,18 +1,27 @@
-let GUESS_NUMBER = Number(prompt("Guess a number between 1 and 100"))
-let RANDOM_NUMBER = Math.floor(Math.random() * 100) + 1;
-let GUESS_COUNT = 0
+let randomNumber = Math.floor(Math.random() * 100) + 1;
+let guessCount = 0;
+let guessNumber = 0;
+let playAgain = true;
 
-while(RANDOM_NUMBER != GUESS_NUMBER) {
-    if(GUESS_NUMBER === RANDOM_NUMBER) {
-        alert("You guessed the number!", RANDOM_NUMBER)
-        console.log(GUESS_COUNT)
-    } else if(GUESS_NUMBER > RANDOM_NUMBER) {
-        GUESS_NUMBER = Number(prompt("Too high! Guess again!"))
-        GUESS_COUNT++
-    } else if(GUESS_NUMBER < RANDOM_NUMBER) {
-        GUESS_NUMBER = Number(prompt("Too low! Guess again!"))
-        GUESS_COUNT++
+while (playAgain) {
+  let guessNumber = Number(prompt("Guess a number between 1 and 100"));
+
+  if (guessNumber === randomNumber) {
+    alert(
+      `You guessed the correct number of ${guessNumber} in ${guessCount} turns.`
+    );
+    playAgain = confirm("Do you want to play again?");
+
+    if (playAgain) {
+      randomNumber = Math.floor(Math.random() * 100) + 1;
+      guessCount = 0;
+      guessNumber = 0;
     }
+  } else if (guessNumber > randomNumber) {
+    guessNumber = alert("Too high! Guess again!");
+    guessCount++;
+  } else {
+    guessNumber = alert("Too low! Guess again!");
+    guessCount++;
+  }
 }
-alert(`You guessed the correct number of ${GUESS_NUMBER} in ${GUESS_COUNT} turns.`)
-console.log(`You guessed the correct number of ${GUESS_NUMBER} in ${GUESS_COUNT} turns.`)
